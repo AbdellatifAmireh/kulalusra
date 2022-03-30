@@ -1,4 +1,4 @@
-# kulalusra
+# kulalusra App
 
 A new Flutter project.
 
