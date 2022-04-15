@@ -1,6 +1,7 @@
-//import 'dart:io';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:kulalusra/web_view_stack.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,6 +11,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //final Completer<WebViewController> _controllerCompleter = Completer<WebViewController>();
+
+  @override
+  void initState() {
+    super.initState();
+    // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+  }
+
 /*   @override
   void initState() {
     if (Platform.isAndroid) {
@@ -34,15 +44,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        //controlle?.goBack();
-        return false;
-      },
-      child: const SafeArea(
-        child: Scaffold(
-          body: WebViewStack(),
-        ),
+    return const SafeArea(
+      child: Scaffold(
+        body: WebViewStack(),
       ),
     );
   }
