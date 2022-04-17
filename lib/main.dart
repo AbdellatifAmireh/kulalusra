@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kulalusra/screens/home_page.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  //SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+  /*SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.amber,
+      statusBarBrightness: Brightness.dark,
+    ),
+  );*/
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      //statusBarColor: Colors.white, // Color for Android
+      statusBarBrightness:
+          Brightness.dark, // Dark == white status bar -- for IOS.
+    ),
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
