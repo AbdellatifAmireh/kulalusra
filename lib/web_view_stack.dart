@@ -23,6 +23,7 @@ class _WebViewStackState extends State<WebViewStack> {
           child: WebView(
             initialUrl: 'http://www.kulalusra.ae',
             javascriptMode: JavascriptMode.unrestricted,
+            gestureNavigationEnabled: true,
             onWebViewCreated: (controller) {
               this.controller = controller;
             },
