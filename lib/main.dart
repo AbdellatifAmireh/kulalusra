@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kulalusra/screens/home_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,8 +11,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // Arabic RTL config START
+      localizationsDelegates: const [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale("ar", "AR"), //  RTL locales
+      ],
+      locale: const Locale("ar", "AR"),
+      // Arabic RTL config END
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'كل الأسرة',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
