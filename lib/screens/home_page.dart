@@ -20,13 +20,6 @@ class _HomePageState extends State<HomePage> {
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
-/*   @override
-  void initState() {
-    if (Platform.isAndroid) {
-      WebView.platform = SurfaceAndroidWebView();
-    }
-    super.initState();
-  } */
 
 /*   @override
   void initState() {

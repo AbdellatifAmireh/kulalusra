@@ -1,4 +1,5 @@
-//import 'dart:async';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -21,12 +22,13 @@ class _WebViewStackState extends State<WebViewStack> {
         WillPopScope(
           onWillPop: () => _goBack(context),
           child: WebView(
-            initialUrl: 'http://www.kulalusra.ae',
+            initialUrl: 'https://www.kulalusra.ae',
             javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (controller) {
               this.controller = controller;
             },
             onPageStarted: (url) async {
+              //controller.loadUrl('https://www.alkhaleej.ae');
               // if the user click in any url inside the app
               setState(() {
                 loadingPercentage = 0;
@@ -38,6 +40,7 @@ class _WebViewStackState extends State<WebViewStack> {
             onProgress: (progress) {
               setState(() {
                 loadingPercentage = progress;
+                print('progress123 $progress');
               });
             },
             onPageFinished: (url) {
