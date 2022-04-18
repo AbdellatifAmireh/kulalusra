@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WebViewStack extends StatefulWidget {
   const WebViewStack({Key? key}) : super(key: key);
@@ -13,8 +14,8 @@ class WebViewStack extends StatefulWidget {
 
 class _WebViewStackState extends State<WebViewStack> {
   late WebViewController controller;
-
   var loadingPercentage = 0;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -27,14 +28,14 @@ class _WebViewStackState extends State<WebViewStack> {
             gestureNavigationEnabled: true,
             onWebViewCreated: (controller) {
               this.controller = controller;
+              //controller.loadUrl('https://www.alkhaleej.ae'); // to load new url
+              //controller.reload() // to reload the same page
             },
             onPageStarted: (url) async {
-              //controller.loadUrl('https://www.alkhaleej.ae');
               // if the user click in any url inside the app
               setState(() {
                 loadingPercentage = 0;
               });
-              print('New url clicked $url');
               final currentUrl = await controller.currentUrl();
               print('New url clicked $currentUrl');
             },
@@ -49,12 +50,33 @@ class _WebViewStackState extends State<WebViewStack> {
                 loadingPercentage = 100;
               });
             },
+            navigationDelegate: (NavigationRequest request) {
+              if (request.url.contains("mailto:")) {
+                launch(request.url);
+                return NavigationDecision.prevent;
+              } else if (request.url.contains("tel:")) {
+                launch(request.url);
+                return NavigationDecision.prevent;
+              } else if (request.url.contains("whatsapp:")) {
+                launch(request.url);
+                return NavigationDecision.prevent;
+              } else if (request.url.contains("twitter")) {
+                launch(request.url);
+                return NavigationDecision.prevent;
+              } else if (request.url.contains("facebook")) {
+                launch(request.url);
+                return NavigationDecision.prevent;
+              }
+              return NavigationDecision.navigate;
+            },
           ),
         ),
         if (loadingPercentage < 100)
           LinearProgressIndicator(
             value: loadingPercentage / 100.0,
           ),
+        //if (loadingPercentage < 100)
+        //Center(child: CircularProgressIndicator()),
       ],
     );
   }

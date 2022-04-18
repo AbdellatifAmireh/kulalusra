@@ -18,8 +18,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     // Enable hybrid composition.
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    super.initState();
   }
-
 
 /*   @override
   void initState() {
