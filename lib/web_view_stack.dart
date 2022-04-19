@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -77,12 +79,15 @@ class _WebViewStackState extends State<WebViewStack> {
             },
           ),
         ),
-        if (loadingPercentage < 100)
+        /*if (loadingPercentage < 100)
           LinearProgressIndicator(
             value: loadingPercentage / 100.0,
-          ),
-        //if (loadingPercentage < 100)
-        //Center(child: CircularProgressIndicator()),
+          ),*/
+        if (loadingPercentage < 100 && Platform.isAndroid)
+          Center(child: CircularProgressIndicator()),
+        if (loadingPercentage < 100 && Platform.isIOS)
+          Center(child: CupertinoActivityIndicator(animating: true, radius: 15)),
+          //Center(child: CircularProgressIndicator.adaptive()),
       ],
     );
   }
