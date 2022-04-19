@@ -66,6 +66,12 @@ class _WebViewStackState extends State<WebViewStack> {
               } else if (request.url.contains("facebook")) {
                 launch(request.url);
                 return NavigationDecision.prevent;
+              } else if (request.url.contains("instagram")) {
+                launch(request.url);
+                return NavigationDecision.prevent;
+              } else if (request.url.contains("pressreader")) {
+                launch(request.url);
+                return NavigationDecision.prevent;
               }
               return NavigationDecision.navigate;
             },
