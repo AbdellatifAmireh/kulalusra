@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       locale: const Locale("ar", "AR"),
       // Arabic RTL config END
       debugShowCheckedModeBanner: false,
-      title: 'مجلة كل الأسرة',
+      title: 'كل الأسرة',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
