@@ -2,7 +2,7 @@
     package="com.daralkhaleej.kulalusra">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="كل الأسرة"
+        android:label="مجلة كل الأسرة"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">

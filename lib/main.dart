@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       locale: const Locale("ar", "AR"),
       // Arabic RTL config END
       debugShowCheckedModeBanner: false,
-      title: 'كل الأسرة',
+      title: 'مجلة كل الأسرة',
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
@@ -67,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
