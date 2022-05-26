@@ -15,7 +15,7 @@ class AllowVerticalDragGestureRecognizer extends VerticalDragGestureRecognizer {
 }
 
 class DragGesturePullToRefresh {
-  static const double EXCEEDS_LOADING_TIME = 3000;
+  static const double EXCEEDS_LOADING_TIME = 2000;
   static const double REFRESH_DISTANCE_MIN = .2;
 
   late WebViewController _controller;

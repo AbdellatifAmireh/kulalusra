@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
@@ -24,7 +25,7 @@ class MyWebViewWidget extends StatefulWidget {
 
 class _MyWebViewWidgetState extends State<MyWebViewWidget>
     with WidgetsBindingObserver {
-  late WebViewController controller;
+  //late WebViewController _controller;
   var loadingPercentage = 0;
   late WebViewController _controller;
 
@@ -73,7 +74,7 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
               zoomEnabled: false,
               gestureNavigationEnabled: true,
               onWebViewCreated: (controller) {
-                this.controller = controller;
+                this._controller = controller;
                 //controller.loadUrl('https://www.alkhaleej.ae'); // to load new url
                 //controller.reload() // to reload the same page
               },
@@ -82,7 +83,7 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
                 setState(() {
                   loadingPercentage = 0;
                 });
-                final currentUrl = await controller.currentUrl();
+                final currentUrl = await _controller.currentUrl();
                 print('New url clicked $currentUrl');
               },
               onProgress: (progress) {
@@ -101,10 +102,10 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
                   Factory<VerticalDragGestureRecognizer>(
                     () => VerticalDragGestureRecognizer()
                       ..onDown = (DragDownDetails dragDownDetails) {
-                        controller.getScrollY().then((value) {
+                        _controller.getScrollY().then((value) {
                           if (value == 0 &&
                               dragDownDetails.globalPosition.direction < 1) {
-                            controller.reload();
+                            _controller.reload();
                           }
                         });
                       },
@@ -137,16 +138,16 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
               },
             ),
           ),
-          if (loadingPercentage < 100)
+          /*if (loadingPercentage < 100)
             LinearProgressIndicator(
               value: loadingPercentage / 100.0,
-            ),
-          /* if (loadingPercentage < 100 && Platform.isAndroid)
+            ),*/
+          if (loadingPercentage < 100 && Platform.isAndroid)
             Center(child: CircularProgressIndicator()),
           if (loadingPercentage < 100 && Platform.isIOS)
             Center(
                 child: CupertinoActivityIndicator(animating: true, radius: 15)),
-          //Center(child: CircularProgressIndicator.adaptive()), */
+          //Center(child: CircularProgressIndicator.adaptive()),
         ],
       ),
       /* child: WebView(
@@ -173,8 +174,8 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
   }
 
   Future<bool> _goBack(BuildContext context) async {
-    if (await controller.canGoBack()) {
-      controller.goBack();
+    if (await _controller.canGoBack()) {
+      _controller.goBack();
       return Future.value(false);
     } else {
       showDialog(
