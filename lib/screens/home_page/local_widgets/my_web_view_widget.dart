@@ -9,13 +9,15 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'pull_to_refresh.dart';
+import '../../pull_to_refresh.dart';
 
 class MyWebViewWidget extends StatefulWidget {
+  //Passing url in this widget
   final String initialUrl;
 
   const MyWebViewWidget({
     Key? key,
+    // Passing initialUrl to the state class
     required this.initialUrl,
   }) : super(key: key);
 
@@ -26,7 +28,11 @@ class MyWebViewWidget extends StatefulWidget {
 class _MyWebViewWidgetState extends State<MyWebViewWidget>
     with WidgetsBindingObserver {
   //late WebViewController _controller;
+  //Start loading from Zero
   var loadingPercentage = 0;
+  // ---------
+  // Define the WebViewController to use it
+  // --------
   late WebViewController _controller;
 
   // Drag to refresh helpers
@@ -34,6 +40,7 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
 
+// Implemet initState when user open the app
   @override
   void initState() {
     super.initState();
@@ -42,6 +49,7 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
+// Implemet dispose when user close the app
   @override
   void dispose() {
     // remove listener
@@ -49,6 +57,7 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
     super.dispose();
   }
 
+// When user pull the WebView implement didChangeMetrics
   @override
   void didChangeMetrics() {
     // on portrait / landscape or other change, recalculate height
@@ -111,6 +120,7 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
                       },
                   ),
                 ),
+                // open this protocols in default app
               navigationDelegate: (NavigationRequest request) {
                 if (request.url.contains("mailto:")) {
                   launch(request.url);
@@ -174,10 +184,12 @@ class _MyWebViewWidgetState extends State<MyWebViewWidget>
   }
 
   Future<bool> _goBack(BuildContext context) async {
+    // if user go back check
     if (await _controller.canGoBack()) {
       _controller.goBack();
       return Future.value(false);
     } else {
+      // dialog to confirm closing
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
