@@ -5,6 +5,7 @@ import 'package:kulalusra/dummy_codes/_OLD_web_view_stack.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../constants/strings.dart';
 import '../../services/onesignal_notification/init_platform_state.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         //body: WebViewStack(),
         body: MyWebViewWidget(
           // webview url
-          initialUrl: 'https://www.kulalusra.ae',
+          initialUrl: baseUrl,
         ),
       ),
     );
